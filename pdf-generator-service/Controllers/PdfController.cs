@@ -18,7 +18,7 @@ namespace pdf_generator_service
         }
 
         /// <summary>
-        /// Generate encrypted PDF and download
+        /// Generate PDF and download
         /// </summary>
         /// <param name="request">Contains user content and pdf encryption password</param>
         /// <returns>Encrypted PDF document</returns>
@@ -26,14 +26,11 @@ namespace pdf_generator_service
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult GenerateEncryptedPdf([FromBody] PdfRequestModel request)
+        public IActionResult GeneratePdf([FromBody] PdfModel pdfModel)
         {
-            var pdfBytes = _pdfService.GenerateEncryptedPdf(
-                request.Content,
-                request.Password
-            );
+            var pdfBytes = _pdfService.GeneratePdf(pdfModel);
 
-            var fileName = $"encrypted_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            var fileName = $"system_{DateTime.Now:yyyyMMddHHmmss}.pdf";
 
             _logger.LogInformation("PDF generated successfully, file name: {FileName}, size: {Size} bytes",
                 fileName, pdfBytes.Length);
