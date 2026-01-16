@@ -6,16 +6,14 @@ namespace pdf_generator_service.Models
     {
 
         /// <summary>
-        /// 使用者內文
+        /// User Content
         /// </summary>
-        [Required(ErrorMessage = "使用者內文不能為空")]
+        [Required]
         public string Content { get; set; } = string.Empty;
-
         /// <summary>
-        /// 加密密碼
+        /// encryption password
         /// </summary>
-        [Required(ErrorMessage = "加密密碼不能為空")]
-        [MinLength(6, ErrorMessage = "密碼至少需要 6 個字元")]
+        [Required]
         public string Password { get; set; } = string.Empty;
     }
 }

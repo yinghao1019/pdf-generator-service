@@ -2,9 +2,12 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using pdf_generator_service.Exceptions;
+using pdf_generator_service.Fonts;
 using pdf_generator_service.Middlewares;
 using pdf_generator_service.Services;
 using pdf_generator_service.Services.Interface;
+using PdfSharp.Fonts;
+using PdfSharp.Snippets.Font;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +16,9 @@ Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
 builder.Host.UseSerilog();
-
+var loggerFactory = LoggerFactory.Create(config => config.AddConsole());
+var fontResolverLogger = loggerFactory.CreateLogger<NotoSansFontResolver>();
+GlobalFontSettings.FontResolver = new NotoSansFontResolver(fontResolverLogger);
 // config json options
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
