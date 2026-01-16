@@ -28,7 +28,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
             .First(x => x.Value?.Errors.Count > 0).Value?.Errors.First().ErrorMessage;
         throw new BadRequestException(string.IsNullOrWhiteSpace(message) ? "" : message);
     };
-}); ;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -36,9 +36,9 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "AMS API",
+        Title = "Fii Mis Common API",
         Version = "v1",
-        Description = "AMS API documentation"
+        Description = "Fii Mis Common API documentation"
     });
 
     // Read & load XML comments (enable XML generation in csproj first)
