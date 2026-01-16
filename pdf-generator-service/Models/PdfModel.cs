@@ -2,18 +2,20 @@
 
 namespace pdf_generator_service.Models
 {
-    public class PdfRequestModel
+    public class PdfModel
     {
-
         /// <summary>
-        /// User Content
+        /// Pdf Title
+        /// </summary>
+        public string Title { get; set; } = "Confidential Document";
+        /// <summary>
+        /// Pdf Content
         /// </summary>
         [Required]
         public string Content { get; set; } = string.Empty;
         /// <summary>
         /// encryption password
         /// </summary>
-        [Required]
         public string Password { get; set; } = string.Empty;
     }
 }
